@@ -1,6 +1,6 @@
 # Changelog
 
-## [UNRELEASED] -
+## [1.0.2] -
 
 ### Break
 
