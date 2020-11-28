@@ -1,5 +1,20 @@
 # Changelog
 
+## [UNRELEASED] -
+
+### Break
+
+### Grow
+
+### Fix
+
+- Get `href` from event's `currentTarget`, not `target` in `goTo`;
+- Prevent default navigation event if `href` is not a string in `goTo`;
+
+### Deprecate
+
+---
+
 ## [1.0.1] - 2020-11-27
 
 ### Break

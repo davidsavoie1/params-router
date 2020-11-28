@@ -24,7 +24,7 @@ export function navigate(to = "", patternOrOptions, replace = false) {
  * and can specify a `replace` boolean attribute.
  * Handles only non-modified primary button click in own navigation target. */
 export function goTo(e) {
-  const { button, defaultPrevented, target: el } = e || {};
+  const { button, defaultPrevented, currentTarget: el } = e || {};
   if (!el) return;
 
   const href = el.getAttribute("href");
@@ -36,10 +36,11 @@ export function goTo(e) {
     !defaultPrevented &&
     button === 0 &&
     (!target || target === "_self") &&
-    !isModified &&
-    typeof href === "string"
+    !isModified
   ) {
     e.preventDefault();
-    navigate(href, { replace: ![null, undefined].includes(replace) });
+    if (typeof href === "string") {
+      navigate(href, { replace: ![null, undefined].includes(replace) });
+    }
   }
 }
