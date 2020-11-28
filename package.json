@@ -1,0 +1,57 @@
+{
+  "name": "params-router",
+  "version": "1.0.0",
+  "description": "Client-side SPA router that converts URL to and from params",
+  "homepage": "https://github.com/davidsavoie1/params-router.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidsavoie1/params-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/davidsavoie1/params-router/issues"
+  },
+  "keywords": [
+    "router",
+    "routes",
+    "url",
+    "href",
+    "pathname",
+    "query",
+    "quesry-string",
+    "parse",
+    "parsing",
+    "navigate",
+    "params",
+    "props",
+    "SPA",
+    "client",
+    "client-side"
+  ],
+  "author": "David Savoie",
+  "license": "ISC",
+  "source": "src/index.js",
+  "main": "dist/params-router.umd.js",
+  "module": "dist/params-router.modern.js",
+  "scripts": {
+    "build": "microbundle src/index.js -f modern,umd --sourcemap false --no-compress",
+    "dev": "microbundle watch src/index.js -f modern,umd --sourcemap false --no-compress",
+    "docs": "docsify serve docs",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "microbundle": "^0.12.4",
+    "prettier": "^2.1.2"
+  },
+  "dependencies": {
+    "history": "^5.0.0",
+    "query-string": "^6.13.7",
+    "url-pattern": "^1.0.3"
+  }
+}
