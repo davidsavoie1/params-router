@@ -32,9 +32,7 @@ function stringify(params, pattern) {
   const pathnameParams = { _: "", ...pick(pathnameKeys, params) };
 
   const pathname = parser.stringify(pathnameParams) || "/";
-  const search = qs.stringify(omit(pathnameKeys, params));
-
-  return pathname + (search ? `?${search}` : "");
+  return qs.stringifyUrl({ url: pathname, query: omit(pathnameKeys, params) });
 }
 
 /* Convert a URL string into a map of parameters,
