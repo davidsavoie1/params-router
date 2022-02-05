@@ -1,6 +1,6 @@
 {
   "name": "params-router",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Client-side SPA router that converts URL to and from params",
   "homepage": "https://github.com/davidsavoie1/params-router.git",
   "repository": {

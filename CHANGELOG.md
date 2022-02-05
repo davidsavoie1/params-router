@@ -6,6 +6,20 @@
 
 ### Grow
 
+- Add `toOwnParams` in main exports;
+
+### Fix
+
+### Deprecate
+
+---
+
+## [1.0.2] -
+
+### Break
+
+### Grow
+
 ### Fix
 
 - Get `href` from event's `currentTarget`, not `target` in `goTo`;
