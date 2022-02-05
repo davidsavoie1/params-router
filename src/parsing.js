@@ -35,14 +35,24 @@ function stringify(params, pattern) {
   return qs.stringifyUrl({ url: pathname, query: omit(pathnameKeys, params) });
 }
 
+/* Return params derived from pathname only. */
+export function toOwnParams(arg, pattern) {
+  const location = isNil(arg) ? history.location : toLocation(arg);
+  const { pathname } = location;
+  if (!pattern) return {};
+  const parser = getParser(pattern);
+
+  return parser.match(trimSlashes(pathname)) || {};
+}
+
 /* Convert a URL string into a map of parameters,
  * taking into account pathname, search, hash and state. */
 export function toParams(arg, pattern) {
   const location = isNil(arg) ? history.location : toLocation(arg);
-  const { pathname, search, hash, state = {} } = location;
-  const parser = getParser(pattern);
+  const { search, hash, state = {} } = location;
+  // const parser = getParser(pattern);
 
-  const pathParams = parser.match(trimSlashes(pathname)) || {};
+  const pathParams = toOwnParams(arg, pattern); // parser.match(trimSlashes(pathname)) || {};
   const searchParams = parseQueryOrHash(search);
   const hashParams = parseQueryOrHash(hash);
 
