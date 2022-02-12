@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.0.4] - 2022-02-12
+
+### Break
+
+### Grow
+
+### Fix
+
+- Include `false` in detection of `replace` attribute;
+
+### Deprecate
+
+---
+
 ## [1.0.3] - 2022-02-05
 
 ### Break
