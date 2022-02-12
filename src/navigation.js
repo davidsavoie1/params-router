@@ -29,18 +29,18 @@ export function goTo(e) {
 
   const href = el.getAttribute("href");
   const { target } = el;
-  const replace = el.getAttribute("replace");
+  const replace = ![false, "false", null, undefined].includes(
+    el.getAttribute("replace")
+  );
   const isModified = !!(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey);
 
   if (
     !defaultPrevented &&
-    button === 0 &&
-    (!target || target === "_self") &&
-    !isModified
+    button === 0 && // Only main button clicks
+    (!target || target === "_self") && // Let browser handle "target=_blank" etc.
+    !isModified // Ignore clicks with modifier keys
   ) {
     e.preventDefault();
-    if (typeof href === "string") {
-      navigate(href, { replace: ![null, undefined].includes(replace) });
-    }
+    if (typeof href === "string") navigate(href, { replace });
   }
 }
