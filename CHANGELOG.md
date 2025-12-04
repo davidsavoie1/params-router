@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0] - 2025-12-04
+
+- Add optional Svelte `routable` custom store;
+- Add JSDocs documentation in each file;
+- Add documentation in `README.md`.
+
+---
+
 ## [1.0.4] - 2022-02-12
 
 ### Break

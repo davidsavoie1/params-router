@@ -1,8 +1,32 @@
-import history from "./history";
+/**
+ * @module navigation
+ * @description Client-side navigation utilities.
+ * Provides functions to navigate within a single-page application and handle
+ * anchor click events for client-side routing.
+ */
+
+import { history } from "./history";
 import { toUrl } from "./parsing";
 
-/* Convert a `to` destination to URL, then navigate to it,
- * either pushing the new location or replacing the existing one. */
+/**
+ * Navigates to a destination URL or parameter object.
+ * Converts the destination to a URL string and updates the browser history
+ * using either push (default) or replace mode.
+ *
+ * @param {string|Function|Object} [to=""] - Destination specification:
+ *   - String: URL to navigate to
+ *   - Object: parameters to convert to URL
+ *   - Function: receives current params, returns updated params
+ * @param {string|Object} [patternOrOptions] - Either:
+ *   - String: URL pattern for parameter extraction (e.g., "/users/:id")
+ *   - Object: options object with optional `pattern` and `replace` properties
+ * @param {boolean} [replace=false] - If true, replaces current history entry instead of pushing
+ *
+ * @example
+ * navigate("/users/123");
+ * navigate({ id: 123, tab: "profile" }, "/users/:id");
+ * navigate(params => ({ ...params, sort: "asc" }), { pattern: "/users/:id", replace: true });
+ */
 export function navigate(to = "", patternOrOptions, replace = false) {
   let pattern = patternOrOptions;
   let _replace = replace;
@@ -19,10 +43,30 @@ export function navigate(to = "", patternOrOptions, replace = false) {
   method(url);
 }
 
-/* Anchor click handler that uses client-side navigation.
- * `<a>` tag must have a string `href` attribute
- * and can specify a `replace` boolean attribute.
- * Handles only non-modified primary button click in own navigation target. */
+/**
+ * Event handler for anchor tag clicks that enables client-side navigation.
+ * Intercepts clicks on links and performs client-side navigation instead of
+ * standard page navigation. Handles edge cases like modifier keys, non-primary
+ * button clicks, and target attributes.
+ *
+ * Respects the following conditions:
+ * - Only primary (left) button clicks are handled
+ * - Clicks with modifier keys (Cmd, Alt, Ctrl, Shift) are ignored
+ * - Links with target attribute other than "_self" are ignored
+ * - Clicks on elements without href attribute are ignored
+ *
+ * @param {MouseEvent} e - Click event from an anchor element
+ *
+ * @example
+ * // In JSX/HTML:
+ * <a href="/users/123" onClick={goTo}>View User</a>
+ * <a href="/admin" onClick={goTo} replace>Admin Panel</a>
+ *
+ * @note
+ * The anchor element must have:
+ * - A string `href` attribute
+ * - Optionally a `replace` attribute to use replace mode instead of push
+ */
 export function goTo(e) {
   const { button, defaultPrevented, currentTarget: el } = e || {};
   if (!el) return;

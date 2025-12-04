@@ -1,6 +1,6 @@
 {
   "name": "params-router",
-  "version": "1.0.4",
+  "version": "1.1.0",
   "description": "Client-side SPA router that converts URL to and from params",
   "homepage": "https://github.com/davidsavoie1/params-router.git",
   "repository": {
@@ -12,46 +12,62 @@
   },
   "keywords": [
     "router",
-    "routes",
+    "routing",
+    "spa",
     "url",
+    "parameters",
+    "params",
+    "pattern",
+    "navigation",
+    "query-string",
     "href",
     "pathname",
-    "query",
-    "quesry-string",
-    "parse",
-    "parsing",
-    "navigate",
-    "params",
-    "props",
-    "SPA",
-    "client",
-    "client-side"
+    "hash",
+    "state",
+    "svelte",
+    "store",
+    "hierarchical-routing"
   ],
   "author": "David Savoie",
   "license": "ISC",
   "source": "src/index.js",
   "main": "dist/params-router.umd.js",
   "module": "dist/params-router.modern.js",
+  "exports": {
+    ".": {
+      "import": "./dist/params-router.modern.js"
+    }
+  },
   "scripts": {
-    "build": "microbundle src/index.js -f modern,umd --sourcemap false --no-compress",
-    "dev": "microbundle watch src/index.js -f modern,umd --sourcemap false --no-compress",
-    "docs": "docsify serve docs",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "microbundle src/index.js",
+    "dev": "microbundle watch src/index.js"
   },
   "files": [
     "dist"
   ],
-  "devDependencies": {
-    "eslint": "^7.10.0",
-    "eslint-config-prettier": "^6.12.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "microbundle": "^0.14.2",
-    "prettier": "^2.1.2"
-  },
   "dependencies": {
     "history": "^4.10.1",
     "query-string": "^6.13.7",
     "url-pattern": "^1.0.3"
+  },
+  "devDependencies": {
+    "eslint": "^7.10.0",
+    "eslint-config-prettier": "^6.15.0",
+    "microbundle": "^0.14.2",
+    "prettier": "^2.1.2",
+    "svelte": "^3.0.0 || ^4.0.0 || ^5.0.0"
+  },
+  "peerDependencies": {
+    "svelte": "^3.0.0 || ^4.0.0 || ^5.0.0"
+  },
+  "peerDependenciesMeta": {
+    "svelte": {
+      "optional": true
+    }
+  },
+  "microbundle": {
+    "external": [
+      "svelte/store"
+    ]
   }
 }
